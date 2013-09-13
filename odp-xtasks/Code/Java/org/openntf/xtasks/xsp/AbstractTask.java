@@ -1,5 +1,6 @@
 /**
- * Modified and used with permission of Stephan H. Wissel
+ * Modified with the permission of the original copyright owner Stephan H. Wissel 
+ * and available under Apache License 2.0. 
  * 
  * Original Code: http://www.wissel.net/blog/d6plinks/SHWL-99U64Q
  * 
