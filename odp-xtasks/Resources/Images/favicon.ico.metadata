@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?><note class="form" replicaid="C2257BE30053B50F" version="9.0" xmlns="http://www.lotus.com/dxl">
+<noteinfo noteid="176" sequence="4" unid="1333E6217E2D46B2C2257BE3005521AC">
+<created><datetime dst="true">20130911T182951,80+03</datetime></created>
+<modified><datetime dst="true">20130911T190022,00+03</datetime></modified>
+<revised><datetime dst="true">20130911T190021,99+03</datetime></revised>
+<lastaccessed><datetime dst="true">20130911T190022,00+03</datetime></lastaccessed>
+<addedtofile><datetime dst="true">20130911T182951,91+03</datetime></addedtofile></noteinfo>
+<updatedby><name>CN=Serdar Basegmez/O=developi</name></updatedby>
+<wassignedby><name>CN=Serdar Basegmez/O=developi</name></wassignedby>
+<item name="$FlagsExt" sign="true"><text>D</text></item>
+<item name="$ImagesWide" sign="true"><number>1</number></item>
+<item name="$ImagesHigh" sign="true"><number>1</number></item>
+<item name="$ImagesColorize" sign="true"><number>0</number></item>
+<item name="$TITLE" sign="true"><text>favicon.ico</text></item>
+<item name="$DesignerVersion" sign="true"><text>8.5.3</text></item>
+
+
+<item name="$MimeType" sign="true"><text>image/jpeg</text></item>
+<item name="$FileModDT" sign="true"><datetime>20101114T063822,00+02</datetime></item>
+<item name="$Flags"><text>34CiQ</text></item>
+<item name="$ImageNames" sign="true"><text>appicon32.ico</text></item></note>
