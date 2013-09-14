@@ -18,6 +18,8 @@ import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 import java.util.concurrent.TimeUnit;
 
+import org.openntf.xtasks.misc.Utils;
+
 public class AbstractTaskManager implements Serializable {
 
 	private static final long serialVersionUID = 6210581748379618339L;
@@ -50,11 +52,19 @@ public class AbstractTaskManager implements Serializable {
         this.service.execute(task);
     }
 
-    protected List<IBackgroundTask> getTasks(boolean onlyCompleted) {
+    public List<IBackgroundTask> getTasks(String nameTip, boolean onlyCompleted) {
     	List<IBackgroundTask> result=new ArrayList<IBackgroundTask>(taskList.size());
     	
     	for(IBackgroundTask task:taskList.values()) {
-    		boolean isThatOK=onlyCompleted?task.isWorking():true;
+    		boolean isThatOK=true;
+    		
+    		if(onlyCompleted && ! task.isWorking()) {
+    			isThatOK=false;
+    		} 
+    		
+    		if(! Utils.isEmptyString(nameTip)) {
+    			isThatOK=task.getName().matches(nameTip);
+    		}
     		
     		if(isThatOK) result.add(task);
     	}
@@ -72,6 +82,21 @@ public class AbstractTaskManager implements Serializable {
     	if ((this.service != null) && !this.service.isTerminated()) {
     		this.service.shutdownNow();
     	}
+		try {
+        	if(!service.awaitTermination(100, TimeUnit.MILLISECONDS)) {
+        		System.out.println("Waiting for all tasks to be cancelled...");
+        		
+        		for(int i=0; i<10; i++) {
+						if(service.awaitTermination(1, TimeUnit.SECONDS)) {
+							break;
+						}
+        		}
+        	}
+		} catch (InterruptedException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}        				
+    	
     }
     
     public void stopTasks() {
@@ -87,21 +112,6 @@ public class AbstractTaskManager implements Serializable {
         		}
         	}
 			
-			try {
-	        	if(!service.awaitTermination(100, TimeUnit.MILLISECONDS)) {
-	        		System.out.println("Waiting for all tasks to be cancelled...");
-	        		
-	        		for(int i=0; i<10; i++) {
-							if(service.awaitTermination(1, TimeUnit.SECONDS)) {
-								break;
-							}
-	        		}
-	        	}
-			} catch (InterruptedException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}        				
-        	
 			taskList.clear();
 			System.out.println("Stopped all tasks...");
         }

@@ -19,21 +19,23 @@ import com.ibm.domino.xsp.module.nsf.NSFComponentModule;
 import com.ibm.domino.xsp.module.nsf.NotesContext;
 import com.ibm.domino.xsp.module.nsf.SessionCloner;
 
+/**
+ * @author sbasegmez
+ *
+ */
 public abstract class AbstractTask implements IBackgroundTask {
-    protected final Session notesSession;
-
+    
     protected static final int STATUS_NEW=0;
     protected static final int STATUS_RUNNING=1;
     protected static final int STATUS_DONE=-1;
     protected static final int STATUS_TERMINATED=-2;
     
+	protected final Session notesSession;
     private SessionCloner sessionCloner;
     private NSFComponentModule module;
 
     private String name="";
-    
     private TaskProgressMonitor progressMonitor;
-
     private int status=STATUS_NEW;
     
     public AbstractTask() {
@@ -118,7 +120,6 @@ public abstract class AbstractTask implements IBackgroundTask {
 		return progressMonitor.getStatusJSON();
 	}
 
-	
     protected abstract void runNotes(Session session, IProgressMonitor monitor);
 
 }
